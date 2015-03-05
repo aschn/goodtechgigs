@@ -1,13 +1,12 @@
 from django.db import models
+from model_utils.models import TimeStampedModel
 from taggit.managers import TaggableManager
 from users.models import User
 from tags.models import SkillTaggedItem, CauseTaggedItem
 
 
-class BaseProfile(models.Model):
+class BaseProfile(TimeStampedModel):
     """Base user profile"""
-    # TODO created and updated
-
     # user
     user = models.ForeignKey(User)
 
@@ -15,7 +14,7 @@ class BaseProfile(models.Model):
     location = models.CharField(max_length=200)
 
     # causes
-    causes = TaggableManager(through=CauseTaggedItem)
+    causes = TaggableManager(through=CauseTaggedItem, verbose_name='causes')
 
     # about, aka description/bio
     about = models.TextField()
@@ -27,9 +26,13 @@ class BaseProfile(models.Model):
 class GigSeeker(BaseProfile):
     """Profile for a user seeking gigs"""
     # skills
-    skills = TaggableManager(through=SkillTaggedItem)
+    skills = TaggableManager(through=SkillTaggedItem, verbose_name='skills')
 
 
 class GigPoster(BaseProfile):
     """Profile for an org posting gigs"""
-    pass
+    # org name
+    org_name = models.CharField(max_length=100)
+
+    def __unicode__(self):
+        return self.org_name

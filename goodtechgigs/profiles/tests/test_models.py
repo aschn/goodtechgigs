@@ -17,6 +17,10 @@ class TestGigSeeker(TestCase):
         seeker = GigSeeker.objects.create(user=self.u)
         self.assertIsNotNone(seeker)
 
+    def test_has_timestamps(self):
+        seeker = GigSeeker.objects.create(user=self.u)
+        self.assertLessEqual(seeker.created, seeker.modified)
+
     def test_has_location(self):
         seeker = GigSeeker.objects.create(user=self.u, location='here')
         self.assertEqual(seeker.location, 'here')
@@ -53,6 +57,10 @@ class TestGigPoster(TestCase):
         poster = GigPoster.objects.create(user=self.u)
         self.assertIsNotNone(poster)
 
+    def test_has_timestamps(self):
+        seeker = GigSeeker.objects.create(user=self.u)
+        self.assertLessEqual(seeker.created, seeker.modified)
+        
     def test_has_location(self):
         poster = GigPoster.objects.create(user=self.u, location='here')
         self.assertEqual(poster.location, 'here')
@@ -67,3 +75,11 @@ class TestGigPoster(TestCase):
 
         poster.causes.add('energy')
         self.assertItemsEqual(poster.causes.names(), ['energy'])
+
+    def test_has_name(self):
+        poster = GigPoster.objects.create(user=self.u, org_name='my org')
+        self.assertEqual(poster.org_name, 'my org')
+
+    def test_str_is_name(self):
+        poster = GigPoster.objects.create(user=self.u, org_name='my org')
+        self.assertEqual(poster.org_name, str(poster))
