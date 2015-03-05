@@ -50,6 +50,7 @@ class Common(Configuration):
         'users',  # custom users app
         'profiles', # user profiles
         'tags', # generic tags
+        'gigs', # gig postings
     )
 
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
