@@ -48,6 +48,7 @@ class Common(Configuration):
     # Apps specific for this project go here.
     LOCAL_APPS = (
         'users',  # custom users app
+        'profiles', # user profiles
         'tags', # generic tags
     )
 
