@@ -1,3 +1,5 @@
 from django.contrib import admin
+from tags.models import SkillTag, CauseTag
 
-# Register your models here.
+admin.site.register(SkillTag)
+admin.site.register(CauseTag)
