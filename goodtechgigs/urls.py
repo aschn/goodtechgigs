@@ -28,6 +28,13 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable avatars
     url(r'^avatar/', include('avatar.urls')),
 
-    # Your stuff: custom urls go here
+    # tags API
+    url(r'^tags/', include('tags.urls')),
+
+    # profiles API
+    url(r'^profiles/', include('profiles.urls')),
+
+    # gigs API
+    url(r'^gigs/', include('gigs.urls')),
 
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,3 +1,13 @@
-from django.shortcuts import render
+from rest_framework import viewsets, serializers
+from gigs.models import Gig
 
-# Create your views here.
+# serializers
+class GigSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Gig
+
+
+# viewsets
+class GigViewSet(viewsets.ModelViewSet):
+    queryset = Gig.objects.all()
+    serializer_class = GigSerializer
