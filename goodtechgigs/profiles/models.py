@@ -32,7 +32,7 @@ class GigSeeker(BaseProfile):
 class GigPoster(BaseProfile):
     """Profile for an org posting gigs"""
     # org name
-    org_name = models.CharField(max_length=100)
+    org_name = models.CharField(max_length=100, unique=True)
 
     def __unicode__(self):
         return self.org_name

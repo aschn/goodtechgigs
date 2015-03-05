@@ -80,6 +80,11 @@ class TestGigPoster(TestCase):
         poster = GigPoster.objects.create(user=self.u, org_name='my org')
         self.assertEqual(poster.org_name, 'my org')
 
+    def test_name_is_unique(self):
+        org_name = 'my org'
+        GigPoster.objects.create(user=self.u, org_name=org_name)
+        self.assertRaises(IntegrityError, GigPoster.objects.create, user=self.u, org_name=org_name)
+
     def test_str_is_name(self):
         poster = GigPoster.objects.create(user=self.u, org_name='my org')
         self.assertEqual(poster.org_name, str(poster))
