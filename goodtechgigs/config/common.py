@@ -43,6 +43,7 @@ class Common(Configuration):
         'allauth.account',  # registration
         'allauth.socialaccount',  # registration
         'taggit', # tagging
+        'rest_framework', # DRF
     )
 
     # Apps specific for this project go here.
